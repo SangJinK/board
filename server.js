@@ -7,8 +7,18 @@ server.listen(8080,()=>{
 });
 app.use(express.static("build"));
 const dotenv = require('dotenv');
-
 const cors = require('cors');
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: '1234',
+    database: "user"
+});
+connection.connect(()=>{
+    console.log("connection established");
+});
 
 dotenv.config();
 app.use(cors());
@@ -29,5 +39,16 @@ app.use(session({
 app.get('/',(req,res)=>{
     res.sendFile(__dirname,'build/index.html');
 });
+
+app.post('/board',(req,res)=>{
+    const query = 'SELECT * FROM tb_board';
+    connection.query(query, (err, result) => {
+        if(err){
+            console.error(err);
+        }else{
+            res.send(result);
+        }
+    });
+})
 
    
