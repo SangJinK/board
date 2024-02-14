@@ -4,6 +4,7 @@ import Footer from './layout/footer';
 import {Route,Routes} from'react-router-dom';
 import Home from './router/home';
 import BoardList from './router/boardlist';
+import BoardDetail from './router/boardDetail';
 import { BrowserRouter } from 'react-router-dom';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/board" element={<BoardList />} />
+        <Route path="/board/:IDX" element={<BoardDetail />} />
       </Routes>
       <Footer />
       </BrowserRouter>

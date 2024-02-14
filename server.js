@@ -51,4 +51,16 @@ app.post('/board',(req,res)=>{
     });
 })
 
+app.post('/board/:IDX',(req,res)=>{
+    const {IDX} = req.params;
+    const query = 'SELECT * FROM tb_board WHERE IDX =?';
+    connection.query(query, [IDX], (err, result) => {
+        if(err){
+            console.error(err);
+        }else{
+            res.send(result);
+        }
+    });
+})
+
    

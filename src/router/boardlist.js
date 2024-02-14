@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-
+import {Link} from "react-router-dom";
 
 
 const BoardList = () => {
@@ -15,8 +15,8 @@ const BoardList = () => {
         })
         .then((res) => res.json())
         .then((data) => {
- 
              setBoardList(data);
+
         });
      
     }
@@ -34,7 +34,9 @@ const BoardList = () => {
             <ul>
                 {boardList.map((board) => {
                     return (
-                        <li key={board.IDX}>{board.TITLE}</li>
+                        <li key={board.IDX}>
+                          <Link to={`/board/${board.IDX}`}>{board.TITLE}</Link>  
+                        </li>
                     )
                 })}
             </ul>
